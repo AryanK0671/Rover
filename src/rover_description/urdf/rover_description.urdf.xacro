@@ -1,0 +1,866 @@
+<?xml version="1.0"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rover_description"
+  xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find rover_description)/urdf/sensors.urdf.xacro"/>
+  <link
+    name="chassis">
+    <inertial>
+      <origin
+        xyz="0.848856756174826 1.01936314005979 1.40233565202935"
+        rpy="0 0 0" />
+      <mass
+        value="3.0136708748555" />
+      <inertia
+        ixx="0.0238693285858421"
+        ixy="-2.16162888765699E-10"
+        ixz="2.16817247419927E-10"
+        iyy="0.00486414098649309"
+        iyz="-3.67475478322892E-06"
+        izz="0.0215591824716579" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/chassis.STL" />
+      </geometry>
+      <material
+        name="silver">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/chassis.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rocker_left">
+    <inertial>
+      <origin
+        xyz="-0.0708930506950052 -0.0788266039661663 -0.0854282503053444"
+        rpy="0 0 0" />
+      <mass
+        value="1.52406781035048" />
+      <inertia
+        ixx="0.00276301924130709"
+        ixy="-0.00103485933820542"
+        ixz="3.88201944670203E-08"
+        iyy="0.00511203836891508"
+        iyz="-2.72150249215459E-08"
+        izz="0.00741443107639246" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/rocker_left.STL" />
+      </geometry>
+      <material
+        name="silver">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/rocker_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rocker_to_chassis_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.57581 -1.3985 1.0289"
+      rpy="-1.5708 1.5427 1.5708" />
+    <parent
+      link="chassis" />
+    <child
+      link="rocker_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="front_wheel_left">
+    <inertial>
+      <origin
+        xyz="1.74505466299379E-07 -2.98567551570983E-07 -0.0357217157995743"
+        rpy="0 0 0" />
+      <mass
+        value="0.698737792866946" />
+      <inertia
+        ixx="0.0027783274087875"
+        ixy="4.08012165720173E-13"
+        ixz="2.071363176278E-18"
+        iyy="0.00277832741148056"
+        iyz="2.91236690295353E-18"
+        izz="0.0052809365873556" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/front_wheel_left.STL" />
+      </geometry>
+      <material
+        name="light_blue">
+        <color
+          rgba="0.866666666666667 0.909803921568627 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/front_wheel_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_wheel_to_rocker_left_joint"
+    type="continuous">
+    <origin
+      xyz="-0.42714 -0.24661 0"
+      rpy="3.1416 0 -1.7013" />
+    <parent
+      link="rocker_left" />
+    <child
+      link="front_wheel_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="bogie_left">
+    <inertial>
+      <origin
+        xyz="0.036618282465839 -0.0737630682136117 -0.0541227088672851"
+        rpy="0 0 0" />
+      <mass
+        value="0.879768518113954" />
+      <inertia
+        ixx="0.000807077266052394"
+        ixy="-0.000166971431752085"
+        ixz="2.93085100014238E-08"
+        iyy="0.00105420731413558"
+        iyz="-6.37598853947825E-08"
+        izz="0.00101921636974668" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/bogie_left.STL" />
+      </geometry>
+      <material
+        name="silver">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/bogie_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="bogie_to_rocker_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.33299 -0.19225 -0.005"
+      rpy="0 0 -0.39451" />
+    <parent
+      link="rocker_left" />
+    <child
+      link="bogie_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middle_wheel_left">
+    <inertial>
+      <origin
+        xyz="1.74504439676149E-07 -2.9856884609103E-07 -0.0357217157995328"
+        rpy="0 0 0" />
+      <mass
+        value="0.698737792866942" />
+      <inertia
+        ixx="0.00277832740878752"
+        ixy="4.08022357220594E-13"
+        ixz="-4.39944130320653E-18"
+        iyy="0.00277832741148053"
+        iyz="-2.42819306211826E-19"
+        izz="0.00528093658735559" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/middle_wheel_left.STL" />
+      </geometry>
+      <material
+        name="light_blue">
+        <color
+          rgba="0.866666666666667 0.909803921568627 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/middle_wheel_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_wheel_left_joint"
+    type="continuous">
+    <origin
+      xyz="-0.12787 -0.19503 0"
+      rpy="3.1416 0 0.59613" />
+    <parent
+      link="bogie_left" />
+    <child
+      link="middle_wheel_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="back_wheel_left">
+    <inertial>
+      <origin
+        xyz="1.74504817262999E-07 -2.98566775858156E-07 -0.0357217157995454"
+        rpy="0 0 0" />
+      <mass
+        value="0.698737792866945" />
+      <inertia
+        ixx="0.00277832740878753"
+        ixy="4.08019409545938E-13"
+        ixz="9.89950354579104E-18"
+        iyy="0.00277832741148054"
+        iyz="-1.36205636861602E-17"
+        izz="0.0052809365873556" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_wheel_left.STL" />
+      </geometry>
+      <material
+        name="light_blue">
+        <color
+          rgba="0.866666666666667 0.909803921568627 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_wheel_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_wheel_left_joint"
+    type="continuous">
+    <origin
+      xyz="0.23084 -0.013114 0"
+      rpy="3.1416 0 1.9721" />
+    <parent
+      link="bogie_left" />
+    <child
+      link="back_wheel_left" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="tht_heim_left">
+    <inertial>
+      <origin
+        xyz="0.0465922874727698 0.000928307879032975 -0.0124000683242971"
+        rpy="0 0 0" />
+      <mass
+        value="0.00406105697199825" />
+      <inertia
+        ixx="3.43344399741734E-07"
+        ixy="1.75648785646082E-07"
+        ixz="2.42986640396015E-07"
+        iyy="6.17241101877793E-06"
+        iyz="-4.67471562619483E-08"
+        izz="5.9066564906369E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/tht_heim_left.STL" />
+      </geometry>
+      <material
+        name="heim_blue">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/tht_heim_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="tht_heim_joint_left_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.12 -0.10303"
+      rpy="1.5708 0 0.028096" />
+    <parent
+      link="rocker_left" />
+    <child
+      link="tht_heim_left" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rocker_right">
+    <inertial>
+      <origin
+        xyz="0.0708984627265465 -0.078825261866198 0.0615717497135109"
+        rpy="0 0 0" />
+      <mass
+        value="1.52406781159065" />
+      <inertia
+        ixx="0.00276301919143687"
+        ixy="0.00103485937796184"
+        ixz="5.40923546343578E-08"
+        iyy="0.00511203842086244"
+        iyz="-4.55690930823379E-09"
+        izz="0.00741443107846789" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/rocker_right.STL" />
+      </geometry>
+      <material
+        name="silver">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/rocker_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rocker_to_chassis_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.97481 -1.3985 1.0291"
+      rpy="1.5708 -1.5447 1.5708" />
+    <parent
+      link="chassis" />
+    <child
+      link="rocker_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="front_wheel_right">
+    <inertial>
+      <origin
+        xyz="1.74507242878263E-07 -2.98563820333442E-07 -0.0490967157995688"
+        rpy="0 0 0" />
+      <mass
+        value="0.698737792866936" />
+      <inertia
+        ixx="0.00277832740878748"
+        ixy="4.08013195712237E-13"
+        ixz="4.07583656199967E-18"
+        iyy="0.00277832741148053"
+        iyz="1.47362492382184E-18"
+        izz="0.00528093658735555" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/front_wheel_right.STL" />
+      </geometry>
+      <material
+        name="light_blue">
+        <color
+          rgba="0.866666666666667 0.909803921568627 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/front_wheel_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_wheel_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.42714 -0.24661 0.13363"
+      rpy="3.1416 0 -1.1957" />
+    <parent
+      link="rocker_right" />
+    <child
+      link="front_wheel_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="bogie_right">
+    <inertial>
+      <origin
+        xyz="-0.0208406920452977 -0.0796690156847922 0.0878772910687851"
+        rpy="0 0 0" />
+      <mass
+        value="0.879768515580983" />
+      <inertia
+        ixx="0.00074833187091685"
+        ixy="9.95513707471112E-05"
+        ixz="4.49524575134292E-09"
+        iyy="0.00111295270342727"
+        iyz="-6.66105790561298E-08"
+        izz="0.00101921636389251" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/bogie_right.STL" />
+      </geometry>
+      <material
+        name="silver">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/bogie_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rocker_to_bogie_right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.33299 -0.19225 0"
+      rpy="0 0 0.20557" />
+    <parent
+      link="rocker_right" />
+    <child
+      link="bogie_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="middle_wheel_right">
+    <inertial>
+      <origin
+        xyz="1.74504856009783E-07 -2.98566675382972E-07 -0.0490967157995981"
+        rpy="0 0 0" />
+      <mass
+        value="0.698737792866939" />
+      <inertia
+        ixx="0.0027783274087875"
+        ixy="4.07993842703458E-13"
+        ixz="-2.71039921676526E-19"
+        iyy="0.00277832741148053"
+        iyz="-4.11079983141355E-18"
+        izz="0.00528093658735557" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/middle_wheel_right.STL" />
+      </geometry>
+      <material
+        name="light_blue">
+        <color
+          rgba="0.866666666666667 0.909803921568627 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/middle_wheel_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_wheel_right_joint"
+    type="continuous">
+    <origin
+      xyz="0.16543 -0.16154 0.12862"
+      rpy="3.1416 0 -0.85226" />
+    <parent
+      link="bogie_right" />
+    <child
+      link="middle_wheel_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="back_wheel_right">
+    <inertial>
+      <origin
+        xyz="1.74504856786939E-07 -2.98566676049106E-07 -0.0490967157995694"
+        rpy="0 0 0" />
+      <mass
+        value="0.69873779286694" />
+      <inertia
+        ixx="0.00277832740878749"
+        ixy="4.08009780475393E-13"
+        ixz="4.80433104898425E-19"
+        iyy="0.00277832741148054"
+        iyz="2.13140564255521E-18"
+        izz="0.00528093658735557" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_wheel_right.STL" />
+      </geometry>
+      <material
+        name="light_blue">
+        <color
+          rgba="0.866666666666667 0.909803921568627 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/back_wheel_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_wheel_right_joint"
+    type="continuous">
+    <origin
+      xyz="-0.22453 -0.063035 0.12862"
+      rpy="3.1416 0 -2.3745" />
+    <parent
+      link="bogie_right" />
+    <child
+      link="back_wheel_right" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="tht_heim_right">
+    <inertial>
+      <origin
+        xyz="0.0465922874727696 0.000928307879032975 -0.0124000683242973"
+        rpy="0 0 0" />
+      <mass
+        value="0.00406105697199823" />
+      <inertia
+        ixx="3.43344399741732E-07"
+        ixy="1.75648785646076E-07"
+        ixz="2.42986640396017E-07"
+        iyy="6.17241101877791E-06"
+        iyz="-4.67471562619479E-08"
+        izz="5.90665649063688E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/tht_heim_right.STL" />
+      </geometry>
+      <material
+        name="heim_blue">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/tht_heim_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="heim_joint_right_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.12 0.043967"
+      rpy="-1.5708 0 -3.1155" />
+    <parent
+      link="rocker_right" />
+    <child
+      link="tht_heim_right" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="differential_bar">
+    <inertial>
+      <origin
+        xyz="-1.22124532708767E-15 -0.00250000000000017 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0761368489731702" />
+      <inertia
+        ixx="1.411307889572E-05"
+        ixy="1.72538644959461E-19"
+        ixz="2.57249200037051E-18"
+        iyy="0.000686937839692156"
+        iyz="1.78176910116479E-22"
+        izz="0.000673141997667158" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/differential_bar.STL" />
+      </geometry>
+      <material
+        name="heim_blue">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_description/meshes/differential_bar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="differential_bar_to_chassis_joint"
+    type="fixed">
+    <origin
+      xyz="0.84881 -1.5145 0.9383"
+      rpy="0 -0.019815 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="differential_bar" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link name="lidar_link">
+    <inertial>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0000658" ixy="0" ixz="0" iyy="0.0000658" iyz="0" izz="0.000125" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.02"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint 
+    name="lidar_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="1.57 1.57 1.57"/> 
+    <parent link="differential_bar"/>
+    <child link="lidar_link"/>
+  </joint>
+
+
+
+
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <!-- ACTIVE JOINTS (WHEELS) -->
+    <!-- Front Left -->
+    <joint name="front_wheel_to_rocker_left_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- Middle Left -->
+    <joint name="middle_wheel_left_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- Back Left -->
+    <joint name="back_wheel_left_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- Front Right -->
+    <joint name="front_wheel_right_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- Middle Right -->
+    <joint name="middle_wheel_right_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- Back Right -->
+    <joint name="back_wheel_right_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- PASSIVE JOINTS (SUSPENSION) -->
+   
+    <joint name="rocker_to_chassis_left_joint">
+      <state_interface name="position" />
+    </joint>
+    <joint name="bogie_to_rocker_left_joint">
+      <state_interface name="position" />
+    </joint>
+    <joint name="rocker_to_chassis_right_joint">
+      <state_interface name="position" />
+    </joint>
+    <joint name="rocker_to_bogie_right_joint">
+      <state_interface name="position" />
+    </joint>
+    <joint name="differential_bar_to_chassis_joint">
+      <state_interface name="position" />
+    </joint>
+  </ros2_control>
+  
+ 
+  <gazebo>
+    
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find rover_description)/config/controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+  
+  </robot>

@@ -1,0 +1,21 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    rover_base_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+rover_base_controller:
+  ros__parameters:
+    joints:
+      - front_wheel_to_rocker_left_joint
+      - middle_wheel_left_joint
+      - back_wheel_left_joint
+      - front_wheel_right_joint
+      - middle_wheel_right_joint
+      - back_wheel_right_joint
+
+    interface_name: velocity

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<package format="3">
+
+  <name>rover_description</name>
+  <version>1.0.0</version>
+
+  <description>
+    URDF description package for rover_description.
+  </description>
+
+  <maintainer email="shibmunchandra@gmail.com">Soumik</maintainer>
+
+  <license>BSD-3-Clause</license>
+
+  <!-- Build -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- ROS -->
+  <depend>launch</depend>
+  <depend>launch_ros</depend>
+
+  <!-- URDF -->
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+
+  <!-- State Publishers -->
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+
+  <!-- Visualization -->
+  <depend>rviz2</depend>
+
+  <!-- Gazebo Fortress -->
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+
+  <!-- Messages -->
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>
