@@ -32,9 +32,10 @@ def generate_launch_description():
         ]
     )
 
+    world_file = os.path.join(pkg_share, "worlds", "empty.sdf")
     # Start Ignition Gazebo
     gazebo = ExecuteProcess(
-        cmd=["ign", "gazebo", "-r", "empty.sdf"],
+        cmd=["ign", "gazebo", "-r", world_file],
         output="screen"
         )
 
