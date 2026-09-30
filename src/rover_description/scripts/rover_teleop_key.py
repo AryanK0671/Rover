@@ -11,12 +11,12 @@ from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
 
 JOINT_ORDER = [
-    "front_wheel_to_rocker_left_joint",   
-    "middle_wheel_left_joint",            
-    "back_wheel_left_joint",             
-    "front_wheel_right_joint",            
-    "middle_wheel_right_joint",           
-    "back_wheel_right_joint",             
+    "front_wheel_to_rocker_left_joint",
+    "middle_wheel_left_joint",
+    "back_wheel_left_joint",
+    "front_wheel_right_joint",
+    "middle_wheel_right_joint",
+    "back_wheel_right_joint",
 ]
 
 
@@ -99,6 +99,9 @@ class RoverTeleop(Node):
 
 
 def main():
+    if not sys.stdin.isatty():
+        print("rover_teleop_key requires an interactive terminal (TTY). Exiting.")
+        return
     settings = termios.tcgetattr(sys.stdin)
     rclpy.init()
     node = RoverTeleop()

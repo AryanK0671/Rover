@@ -30,6 +30,12 @@
   <depend>joint_state_publisher</depend>
   <depend>joint_state_publisher_gui</depend>
 
+  <!-- Controllers & Control Manager -->
+  <depend>controller_manager</depend>
+  <depend>joint_state_broadcaster</depend>
+  <depend>velocity_controllers</depend>
+  <depend>gz_ros2_control</depend>
+
   <!-- Visualization -->
   <depend>rviz2</depend>
 
@@ -37,10 +43,17 @@
   <depend>ros_gz_sim</depend>
   <depend>ros_gz_bridge</depend>
 
-  <!-- Messages -->
+  <!-- Messages & Client Libraries -->
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
   <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>sensor_msgs_py</depend>
+  <depend>rosgraph_msgs</depend>
+  <depend>visualization_msgs</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

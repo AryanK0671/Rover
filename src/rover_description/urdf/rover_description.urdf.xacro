@@ -6,11 +6,21 @@
   name="rover_description"
   xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:include filename="$(find rover_description)/urdf/sensors.urdf.xacro"/>
+
+  <!-- Standard ROS base_link root frame (REP-103: X forward, Y left, Z up) -->
+  <link name="base_link" />
+
+  <joint name="base_link_to_chassis_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="chassis" />
+    <origin xyz="-0.9725 0.8488 -1.09" rpy="-1.570796 0 -1.570796" />
+  </joint>
+
   <link
     name="chassis">
     <inertial>
       <origin
-        xyz="0.848856756174826 1.01936314005979 1.40233565202935"
+        xyz="0.848856756174826 -1.40233565202935 1.01936314005979"
         rpy="0 0 0" />
       <mass
         value="3.0136708748555" />
@@ -18,9 +28,9 @@
         ixx="0.0238693285858421"
         ixy="-2.16162888765699E-10"
         ixz="2.16817247419927E-10"
-        iyy="0.00486414098649309"
+        iyy="0.0215591824716579"
         iyz="-3.67475478322892E-06"
-        izz="0.0215591824716579" />
+        izz="0.00486414098649309" />
     </inertial>
     <visual>
       <origin
@@ -88,7 +98,7 @@
   </link>
   <joint
     name="rocker_to_chassis_left_joint"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0.57581 -1.3985 1.0289"
       rpy="-1.5708 1.5427 1.5708" />
@@ -98,6 +108,8 @@
       link="rocker_left" />
     <axis
       xyz="0 0 1" />
+    <limit lower="-0.4" upper="0.4" effort="100.0" velocity="1.0" />
+    <dynamics damping="8.0" friction="0.5" />
   </joint>
   <link
     name="front_wheel_left">
@@ -194,7 +206,7 @@
   </link>
   <joint
     name="bogie_to_rocker_left_joint"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0.33299 -0.19225 -0.005"
       rpy="0 0 -0.39451" />
@@ -204,6 +216,8 @@
       link="bogie_left" />
     <axis
       xyz="0 0 1" />
+    <limit lower="-0.4" upper="0.4" effort="100.0" velocity="1.0" />
+    <dynamics damping="5.0" friction="0.5" />
   </joint>
   <link
     name="middle_wheel_left">
@@ -406,7 +420,7 @@
   </link>
   <joint
     name="rocker_to_chassis_right_joint"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0.97481 -1.3985 1.0291"
       rpy="1.5708 -1.5447 1.5708" />
@@ -416,6 +430,8 @@
       link="rocker_right" />
     <axis
       xyz="0 0 1" />
+    <limit lower="-0.4" upper="0.4" effort="100.0" velocity="1.0" />
+    <dynamics damping="8.0" friction="0.5" />
   </joint>
   <link
     name="front_wheel_right">
@@ -512,7 +528,7 @@
   </link>
   <joint
     name="rocker_to_bogie_right_joint"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="-0.33299 -0.19225 0"
       rpy="0 0 0.20557" />
@@ -522,6 +538,8 @@
       link="bogie_right" />
     <axis
       xyz="0 0 1" />
+    <limit lower="-0.4" upper="0.4" effort="100.0" velocity="1.0" />
+    <dynamics damping="5.0" friction="0.5" />
   </joint>
   <link
     name="middle_wheel_right">
@@ -732,35 +750,44 @@
       link="chassis" />
     <child
       link="differential_bar" />
-    <axis
-      xyz="0 1 0" />
   </joint>
   <link name="lidar_link">
     <inertial>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="0.1"/>
       <inertia ixx="0.0000658" ixy="0" ixz="0" iyy="0.0000658" iyz="0" izz="0.000125" />
     </inertial>
+    <!-- Sensor head visual -->
     <visual>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder radius="0.05" length="0.02"/>
+        <cylinder radius="0.05" length="0.04"/>
       </geometry>
       <material name="black">
-        <color rgba="0 0 0 1"/>
+        <color rgba="0.1 0.1 0.1 1"/>
+      </material>
+    </visual>
+    <!-- Mount post/riser to differential bar -->
+    <visual name="lidar_mast">
+      <origin xyz="0 0 -0.08" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.015" length="0.16"/>
+      </geometry>
+      <material name="dark_grey">
+        <color rgba="0.3 0.3 0.3 1"/>
       </material>
     </visual>
     <collision>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder radius="0.05" length="0.02"/>
+        <cylinder radius="0.05" length="0.04"/>
       </geometry>
     </collision>
   </link>
 
   <joint 
     name="lidar_joint" type="fixed">
-    <origin xyz="0 0.2 0" rpy="1.57 0 0"/> 
+    <origin xyz="0 -0.16 0" rpy="1.570796 -1.550981 0"/> 
     <parent link="differential_bar"/>
     <child link="lidar_link"/>
   </joint>
@@ -850,17 +877,42 @@
     <joint name="rocker_to_bogie_right_joint">
       <state_interface name="position" />
     </joint>
-    <joint name="differential_bar_to_chassis_joint">
-      <state_interface name="position" />
-    </joint>
   </ros2_control>
-  
- 
+
+  <!-- WHEEL FRICTION FOR GAZEBO -->
+  <gazebo reference="front_wheel_left"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+  <gazebo reference="middle_wheel_left"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+  <gazebo reference="back_wheel_left"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+  <gazebo reference="front_wheel_right"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+  <gazebo reference="middle_wheel_right"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+  <gazebo reference="back_wheel_right"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+
+  <!-- ROCKER-BOGIE SUSPENSION DYNAMICS & SPRINGS -->
+  <gazebo reference="rocker_to_chassis_left_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springStiffness>45.0</springStiffness>
+    <springReference>0.0</springReference>
+  </gazebo>
+  <gazebo reference="rocker_to_chassis_right_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springStiffness>45.0</springStiffness>
+    <springReference>0.0</springReference>
+  </gazebo>
+  <gazebo reference="bogie_to_rocker_left_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springStiffness>25.0</springStiffness>
+    <springReference>0.0</springReference>
+  </gazebo>
+  <gazebo reference="rocker_to_bogie_right_joint">
+    <implicitSpringDamper>true</implicitSpringDamper>
+    <springStiffness>25.0</springStiffness>
+    <springReference>0.0</springReference>
+  </gazebo>
+
   <gazebo>
-    
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
       <parameters>$(find rover_description)/config/controllers.yaml</parameters>
     </plugin>
   </gazebo>
   
-  </robot>
+</robot>
