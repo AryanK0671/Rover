@@ -880,34 +880,25 @@
   </ros2_control>
 
   <!-- WHEEL FRICTION FOR GAZEBO -->
-  <gazebo reference="front_wheel_left"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
-  <gazebo reference="middle_wheel_left"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
-  <gazebo reference="back_wheel_left"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
-  <gazebo reference="front_wheel_right"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
-  <gazebo reference="middle_wheel_right"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
-  <gazebo reference="back_wheel_right"><mu1>1.2</mu1><mu2>1.2</mu2></gazebo>
+  <gazebo reference="front_wheel_left"><mu1>0.5</mu1><mu2>0.3</mu2><kp>1000000.0</kp><kd>10.0</kd><minDepth>0.001</minDepth></gazebo>
+  <gazebo reference="middle_wheel_left"><mu1>0.5</mu1><mu2>0.3</mu2><kp>1000000.0</kp><kd>10.0</kd><minDepth>0.001</minDepth></gazebo>
+  <gazebo reference="back_wheel_left"><mu1>0.5</mu1><mu2>0.3</mu2><kp>1000000.0</kp><kd>10.0</kd><minDepth>0.001</minDepth></gazebo>
+  <gazebo reference="front_wheel_right"><mu1>0.5</mu1><mu2>0.3</mu2><kp>1000000.0</kp><kd>10.0</kd><minDepth>0.001</minDepth></gazebo>
+  <gazebo reference="middle_wheel_right"><mu1>0.5</mu1><mu2>0.3</mu2><kp>1000000.0</kp><kd>10.0</kd><minDepth>0.001</minDepth></gazebo>
+  <gazebo reference="back_wheel_right"><mu1>0.5</mu1><mu2>0.3</mu2><kp>1000000.0</kp><kd>10.0</kd><minDepth>0.001</minDepth></gazebo>
 
-  <!-- ROCKER-BOGIE SUSPENSION DYNAMICS & SPRINGS -->
+  <!-- ROCKER SUSPENSION DYNAMICS (DIFFERENTIAL STABILIZATION) -->
   <gazebo reference="rocker_to_chassis_left_joint">
     <implicitSpringDamper>true</implicitSpringDamper>
-    <springStiffness>45.0</springStiffness>
-    <springReference>0.0</springReference>
+    <springStiffness>60.0</springStiffness>
+    <springReference>0.1096</springReference>
   </gazebo>
   <gazebo reference="rocker_to_chassis_right_joint">
     <implicitSpringDamper>true</implicitSpringDamper>
-    <springStiffness>45.0</springStiffness>
-    <springReference>0.0</springReference>
+    <springStiffness>60.0</springStiffness>
+    <springReference>-0.0555</springReference>
   </gazebo>
-  <gazebo reference="bogie_to_rocker_left_joint">
-    <implicitSpringDamper>true</implicitSpringDamper>
-    <springStiffness>25.0</springStiffness>
-    <springReference>0.0</springReference>
-  </gazebo>
-  <gazebo reference="rocker_to_bogie_right_joint">
-    <implicitSpringDamper>true</implicitSpringDamper>
-    <springStiffness>25.0</springStiffness>
-    <springReference>0.0</springReference>
-  </gazebo>
+  <!-- Bogies are passive un-sprung pivots strictly per rocker-bogie mechanism -->
 
   <gazebo>
     <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
